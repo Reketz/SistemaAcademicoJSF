@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <p:messages showDetail="true"></p:messages>
+        <br></br>
+        <p:fieldset legend="Lista de usuarios (filtro)">
+            <p:panelGrid columns="2">
+                <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Buscar" value="#{loginMB.nome}"/>
+                <p:selectOneButton value="#{loginMB.filtro}" label="Filtro">
+                    <f:selectItem itemLabel="Coordenadores" itemValue="coordenador" />
+                    <f:selectItem itemLabel="Professores" itemValue="professor" />
+                </p:selectOneButton>
+            </p:panelGrid> 
+            <br></br>
+            <p:commandButton value="Aplicar" update="@form"></p:commandButton>
+            <br></br><br></br>
+            <p:dataTable value="#{loginMB.list(loginMB.filtro, loginMB.nome)}" var="user">                
+                <p:column headerText="Id">
+                    <h:outputText value="#{user.id}"></h:outputText>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Login">
+                    <h:outputText value="#{user.login}"></h:outputText>
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{user.tipo}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

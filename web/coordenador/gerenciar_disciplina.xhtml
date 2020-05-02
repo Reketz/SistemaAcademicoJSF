@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <p:messages  showDetail="true"></p:messages>
+        <br></br>
+        <p:fieldset legend="Lista de disciplinas">
+            <p:panelGrid columns="2">
+                <h:outputLabel for="nome" value="Nome"/>
+                <p:inputText label="Nome" id="nome" value="#{disciplinaMB.disciplina.nome}" required="true" requiredMessage="O nome é obrigatório"/>
+                <h:outputLabel for="curso" value="Curso"/>
+                <p:selectOneMenu label="Curso" id="curso" value="#{disciplinaMB.disciplina.curso}" converter="generic" required="true" requiredMessage="A disciplina é obrigatória">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{cursoMB.list()}" var="curso" itemLabel="#{curso.nome}" itemValue="#{curso}" />
+                </p:selectOneMenu>
+            </p:panelGrid> 
+            <br></br>
+            <p:commandButton value="Salvar" action="#{disciplinaMB.add()}" update="@form"></p:commandButton>
+            <br></br><br></br><br></br><br></br><br></br>
+            <p:dataTable value="#{disciplinaMB.list()}" var="disciplina">                
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{disciplinaMB.edit(disciplina)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Remover" action="#{disciplinaMB.remove(disciplina)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{disciplina.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Curso">
+                    <h:outputText value="#{disciplina.curso.nome}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

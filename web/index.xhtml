@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form>
+        <p:growl id="messages" showDetail="true" />
+        <p:toolbar>
+            <f:facet name="right">
+                <p:menuButton value="Faça seu login">
+                    <p:menuitem value="Login" url="login.jsf" icon="pi pi-home" />
+                </p:menuButton>
+            </f:facet>
+        </p:toolbar>
+    </h:form>
+    <br></br><br></br>
+    <div class="header-content container-fluid">
+        <div class="header-menu-container">
+            <div class="header-menu">
+                <div class="region region-header">
+                    <section id="block-krot-base-krot-base-custom-logotipo" class="block block-krot-base logo-container clearfix">
+                        <div class="logo-content">
+                            <a class="logo-vestibulares" href="index.jsf">
+                                <center>
+                                    <img alt="Inscreva-se no vestibular do Vestibulares! Clique aqui." src="image/image.jpg" class="logo-branco" title="Vestibulares - Logo"/>
+                                </center>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ui:decorate>
+

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema Academico</title>
+    </h:head>
+    <h:body>
+        <center><h1>Area do Diretor</h1></center>
+        <h:form>  
+            <div style="background-color: #1f89ce; border-radius: 5px; height: 80px;">
+                <h2> <p:outputLabel value="" style="color: #ffffff; margin-left: 10px;"/></h2>
+            </div>
+            <hr/>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:submenu label="Cadastro" icon="pi pi-file">
+                    <p:menuitem value="Cadastrar data, hora, local e cursos ofertados" process="@this" url="index.jsf" />
+                    <p:menuitem value="Cadastrar curso" process="@this" url="gerenciar_curso.jsf" />
+                </p:submenu>
+                <p:submenu label="Visualizar" icon="pi pi-file">
+                    <p:menuitem value="Visualizar usuarios" process="@this" url="diretor_usuarios.jsf" />
+                </p:submenu>
+                <p:submenu label="Relatórios" icon="pi pi-file">
+                    <p:menuitem value="Visualizar usuários do sistema" url="index.jsf" />
+                </p:submenu>
+
+                <f:facet name="options">
+                    <p:commandButton process="@this" action="#{loginMB.logout()}" value="Logout" icon="pi pi-home" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <ui:insert></ui:insert>
+    </h:body>
+</html>
+

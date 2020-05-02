@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema Academico</title>
+    </h:head>
+    <h:body>
+        <center><h1>Area do Professor</h1></center>
+        <h:form>  
+            <div style="background-color: #1f89ce; border-radius: 5px; height: 80px;">
+                <h2> <p:outputLabel value="" style="color: #ffffff; margin-left: 10px;"/></h2>
+            </div>
+            <hr/>
+            <p:growl id="messages"/>
+            <p:menubar>
+                <p:submenu label="Cadastro" icon="pi pi-file">
+                    <p:menuitem value="Lançar notas para aluno" process="@this" url="index.jsf" />
+                </p:submenu>
+                <p:submenu label="Relatórios" icon="pi pi-file">
+                    <p:menuitem value="Visualizar Turmas" url="gerenciar_turma.jsf" />
+                    <p:separator />
+                    <p:menuitem value="Visualizar alunos matriculados da turma" url="index.jsf" />
+                    <p:separator />
+                    <p:menuitem value="Visualizar Disciplinas" url="index.jsf" />
+                </p:submenu>
+                <f:facet name="options">
+                    <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Buscar"/>
+                    <p:commandButton process="@this" action="#{loginMB.logout()}" value="Logout" icon="pi pi-home" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <ui:insert></ui:insert>
+    </h:body>
+</html>
+

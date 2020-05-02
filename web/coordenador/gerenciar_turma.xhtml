@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <p:messages  showDetail="true"></p:messages>
+        <br></br>
+        <p:fieldset legend="Lista de turmas">
+            <p:panelGrid columns="2">
+                <h:outputLabel for="periodo" value="Periodo"/>
+                <p:inputText label="Periodo" id="periodo" value="#{turmaMB.turma.periodo}"/>
+                <h:outputLabel for="sigla" value="Sigla"/>
+                <p:inputText label="Sigla" id="sigla" value="#{turmaMB.turma.sigla}"/>
+                <h:outputLabel for="curso" value="Curso"/>
+                <p:selectOneMenu label="Curso" id="curso" value="#{turmaMB.turma.curso}" converter="generic">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{cursoMB.list()}" var="curso" itemLabel="#{curso.nome}" itemValue="#{curso}"/>
+                </p:selectOneMenu>
+            </p:panelGrid> 
+            <br></br>
+            <p:commandButton value="Salvar" action="#{turmaMB.add()}" update="@form"></p:commandButton>
+            <br></br><br></br><br></br><br></br><br></br>
+            <p:dataTable value="#{turmaMB.list()}" var="turma">                
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{turmaMB.edit(turma)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Remover" action="#{turmaMB.remove(turma)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Periodo">
+                    <h:outputText value="#{turma.periodo}"></h:outputText>
+                </p:column>
+                <p:column headerText="Sigla">
+                    <h:outputText value="#{turma.sigla}"></h:outputText>
+                </p:column>
+                <p:column headerText="Curso">
+                    <h:outputText value="#{turma.curso.nome}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

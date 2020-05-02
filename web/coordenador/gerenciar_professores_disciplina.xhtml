@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <p:messages  showDetail="true"></p:messages>
+        <br></br>
+        <p:fieldset legend="Lista de professor/disciplina">
+            <p:panelGrid columns="2">
+                <h:outputLabel for="professor" value="Professor"/>
+                <p:selectOneMenu label="Professor" id="professor" value="#{professorDisciplinaMB.professorDisciplina.professor}" converter="generic" required="false" requiredMessage="O professor é obrigatório">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{loginMB.listPorTipo('professor')}" var="professor" itemLabel="#{professor.nome}" itemValue="#{professor}" />
+                </p:selectOneMenu>
+                <h:outputLabel for="disciplina" value="Disciplina"/>
+                <p:selectOneMenu label="Disciplina" id="disciplina" value="#{professorDisciplinaMB.professorDisciplina.disciplina}" converter="generic" required="false" requiredMessage="O disciplina é obrigatório">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{disciplinaMB.list()}" var="disciplina" itemLabel="#{disciplina.nome}" itemValue="#{disciplina}"/>
+                </p:selectOneMenu>
+            </p:panelGrid> 
+            <br></br>
+            <p:commandButton value="Salvar" action="#{professorDisciplinaMB.add()}" update="@form"></p:commandButton>
+            <br></br><br></br><br></br><br></br><br></br>
+            <p:dataTable value="#{professorDisciplinaMB.list()}" var="professorDisciplina">                
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{professorDisciplinaMB.edit(professorDisciplina)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Remover" action="#{professorDisciplinaMB.remove(professorDisciplina)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{professorDisciplina.professor.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Disciplina">
+                    <h:outputText value="#{professorDisciplina.disciplina.nome}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <p:messages  showDetail="true"></p:messages>
+        <br></br>
+        <p:fieldset legend="Lista de usuários">
+            <p:panelGrid columns="4">
+                <h:outputLabel for="nome" value="Nome"/>
+                <p:inputText label="Nome" id="nome" value="#{loginMB.pessoa.nome}"required="true" requiredMessage="O nome é obrigatório"/>
+                <h:outputLabel for="cpf" value="CPF"/>
+                <p:inputMask label="CPF" id="cpf" value="#{loginMB.pessoa.cpf}" mask="999.999.999-99"required="true" requiredMessage="O cpf é obrigatório"/>
+                <h:outputLabel for="endereco" value="Endereco"/>
+                <p:inputText label="Endereco" id="endereco" value="#{loginMB.pessoa.endereco}"required="true" requiredMessage="O endereço é obrigatório"/>
+                <h:outputLabel for="email" value="Email"/>
+                <p:inputText label="Email" id="email" value="#{loginMB.pessoa.email}"required="true" requiredMessage="O email é obrigatório"/>
+                <h:outputLabel for="telefone" value="Telefone"/>
+                <p:inputMask label="Telefone" id="telefone" value="#{loginMB.pessoa.telefone}" mask="(99) 9.9999-9999"required="true" requiredMessage="O telefone é obrigatório"/>
+                <h:outputLabel for="tipo" value="Tipo"/>
+                <p:selectOneButton value="#{loginMB.pessoa.tipo}" label="Tipo"required="true" requiredMessage="O tipo é obrigatório"/>
+                    <f:selectItem itemLabel="Administrador" itemValue="admin" />
+                    <f:selectItem itemLabel="Aluno" itemValue="aluno" />
+                    <f:selectItem itemLabel="Coordenador" itemValue="coordenador" />
+                    <f:selectItem itemLabel="Diretor" itemValue="diretor" />
+                    <f:selectItem itemLabel="Professor" itemValue="professor" />
+                </p:selectOneButton>
+                <h:outputLabel for="login" value="Login"/>
+                <p:inputText label="Login" id="login" value="#{loginMB.pessoa.login}" required="true" requiredMessage="O login é obrigatório"/>
+                <h:outputLabel for="senha" value="Senha"/>
+                <p:password label="Senha" id="senha" value="#{loginMB.pessoa.senha}" required="true" requiredMessage="A senha é obrigatória"/>
+                <h:outputLabel for="titulacao" value="Titulação"/>
+                <p:inputText label="Titulação" id="titulacao" value="#{loginMB.pessoa.titulacao}"/>
+            </p:panelGrid> 
+            <br></br>
+            <p:commandButton value="Salvar" action="#{loginMB.add()}" update="@form"></p:commandButton>
+            <br></br><br></br><br></br><br></br><br></br>
+            <p:dataTable value="#{loginMB.list()}" var="user">                
+                <p:column headerText="Ações">
+                    <p:commandButton value="Editar" action="#{loginMB.edit(user)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Remover" action="#{loginMB.remove(user)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Id">
+                    <h:outputText value="#{user.id}"></h:outputText>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Login">
+                    <h:outputText value="#{user.login}"></h:outputText>
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{user.tipo}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

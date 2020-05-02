@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui">
+
+    <div id="login-dialog">
+        <center>
+            <H1>Area de Login</H1>
+        </center>
+        <center>
+            <h:form id="frm" prependId="false">
+                <h:panelGrid columns="2" rowClasses="3" styleClass="grid-login">
+
+                    <p:outputLabel value="Email" />
+                    <p:inputText size="30" required="true" type="email" label="email" value="#{loginMB.login}" />
+
+                    <p:outputLabel value="Senha" />
+                    <p:password size="30" required="true" label="Senha" value="#{loginMB.senha}" />
+
+                    <h:panelGroup />
+
+                    <p:commandButton value="Login" action="#{loginMB.logar()}"/>
+                </h:panelGrid>
+                <center>
+                    <h:panelGrid columns="2" rowClasses="5">
+
+                    </h:panelGrid>
+                </center>
+            </h:form>
+        </center>
+    </div>
+
+
+</ui:decorate>
+
